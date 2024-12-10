@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+include __DIR__.'/admin.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::get('/welcome', function () {
     return view('welcome');
