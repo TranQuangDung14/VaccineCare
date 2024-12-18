@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer("diseases_id")->unsigned()->nullable();
             $table->text("description")->nullable(); 
             $table->integer("doses_required")->nullable()->unsigned();// số mũi cần tiêm
+            $table->integer("dose_intervals")->nullable()->unsigned();// chu kì thời gian
             $table->timestamps();
         });
     }

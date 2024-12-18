@@ -9,19 +9,21 @@
           <div class="signin-content">
               <div class="signin-image">
                   <figure><img src="{{ asset('Admin/') }}/auth/images/signin-image.jpg" alt="sing up image"></figure>
-                  <a href="#" class="signup-image-link">Create an account</a>
+                  <a href="{{ route('ShowRegister') }}" class="signup-image-link">Create an account</a>
               </div>
 
               <div class="signin-form">
                   <h2 class="form-title">Sign up</h2>
-                  <form method="POST" class="register-form" id="login-form">
+                  {{-- <form method="POST" class="register-form" id="login-form"> --}}
+                  <form action="{{ route('login_admin') }}" method="POST" enctype="multipart/form-data">
+                      @csrf   
                       <div class="form-group">
                           <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                          <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                          <input type="text" name="email" id="email" placeholder="Your Name"/>
                       </div>
                       <div class="form-group">
                           <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                          <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                          <input type="password" name="password" id="password" placeholder="Password"/>
                       </div>
                       <div class="form-group">
                           <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
