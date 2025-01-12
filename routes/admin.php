@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\auth\AuthController;
 use App\Http\Controllers\Admin\DiseasesController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\VaccinationSchedulesController;
-use App\Http\Controllers\Admin\VaccsinesController;
+use App\Http\Controllers\Admin\VaccinesController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -37,14 +37,14 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{id}',    [DiseasesController::class, 'delete'])->name('diseaseDelete');
     });
 
-    // vaccsine
-    Route::prefix('vaccsine')->middleware('auth')->group(function () {
-        Route::get('',                  [VaccsinesController::class, 'index'])->name('vaccsine');
-        Route::get('add',               [VaccsinesController::class, 'create'])->name('vaccsineCreate');
-        Route::post('add',              [VaccsinesController::class, 'store'])->name('vaccsineStore');
-        Route::get('edit/{id}',         [VaccsinesController::class, 'edit'])->name('vaccsineEdit');
-        Route::put('update/{id}',       [VaccsinesController::class, 'update'])->name('vaccsineUpdate');
-        Route::delete('delete/{id}',    [VaccsinesController::class, 'delete'])->name('vaccsineDelete');
+    // vaccine
+    Route::prefix('vaccine')->middleware('auth')->group(function () {
+        Route::get('',                  [VaccinesController::class, 'index'])->name('vaccine');
+        Route::get('add',               [VaccinesController::class, 'create'])->name('vaccineCreate');
+        Route::post('add',              [VaccinesController::class, 'store'])->name('vaccineStore');
+        Route::get('edit/{id}',         [VaccinesController::class, 'edit'])->name('vaccineEdit');
+        Route::put('update/{id}',       [VaccinesController::class, 'update'])->name('vaccineUpdate');
+        Route::delete('delete/{id}',    [VaccinesController::class, 'delete'])->name('vaccineDelete');
     });
 
     // patient
@@ -58,15 +58,16 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{id}',    [PatientsController::class, 'delete'])->name('patientDelete');
     });
 
-    // vaccsine-schedule
-    Route::prefix('vaccsine-schedule')->middleware('auth')->group(function () {
+    // vaccine-schedule
+    Route::prefix('vaccine-schedule')->middleware('auth')->group(function () {
 
-        Route::get('',                  [VaccinationSchedulesController::class, 'index'])->name('vaccsineschedule');
-        Route::get('add',               [VaccinationSchedulesController::class, 'create'])->name('vaccsinescheduleCreate');
-        Route::post('add',              [VaccinationSchedulesController::class, 'store'])->name('vaccsinescheduleStore');
-        Route::get('edit/{id}',         [VaccinationSchedulesController::class, 'edit'])->name('vaccsinescheduleEdit');
-        Route::put('update/{id}',       [VaccinationSchedulesController::class, 'update'])->name('vaccsinescheduleUpdate');
-        Route::delete('delete/{id}',    [VaccinationSchedulesController::class, 'delete'])->name('vaccsinescheduleDelete');
+        Route::get('',                  [VaccinationSchedulesController::class, 'index'])->name('vaccineschedule');
+        Route::get('detail/{id}',       [VaccinationSchedulesController::class, 'showService'])->name('VCDetail');
+        Route::get('detail/{id}/add',   [VaccinationSchedulesController::class, 'create'])->name('vaccinescheduleCreate');
+        Route::post('add',              [VaccinationSchedulesController::class, 'store'])->name('vaccinescheduleStore');
+        // Route::get('edit/{id}',         [VaccinationSchedulesController::class, 'edit'])->name('vaccinescheduleEdit');
+        Route::put('update-status/{id}',       [VaccinationSchedulesController::class, 'updateStatus'])->name('vaccinescheduleUpdateStatus');
+        Route::delete('delete-schedule/{id}',    [VaccinationSchedulesController::class, 'delete_schedule'])->name('vaccinescheduleDelete');
     });
 });
 

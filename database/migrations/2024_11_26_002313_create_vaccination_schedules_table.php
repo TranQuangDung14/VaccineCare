@@ -15,10 +15,6 @@ return new class extends Migration
             $table->id();
             $table->integer("patient_id")->unsigned()->nullable();
             $table->integer("vaccine_id")->unsigned()->nullable();
-            $table->integer("dose_number")->nullable()->unsigned(); // thứ tự mũi tiêm
-            $table->date("scheduled_date")->nullable();
-            $table->date("administered_date")->nullable();
-            $table->integer("status")->default(0)->comment('0: chưa tiêm, 1: đã tiêm, 2: bị lỡ'); //(0: chưa tiêm,1: đã tiêm, 2: bị lỡ)
             $table->text("notes")->nullable();
             $table->timestamps();
         });

@@ -1,12 +1,12 @@
 @extends('Admin.layouts.master')
 
-@section('title', 'Danh sách thông tin bệnh')
+@section('title', 'Danh sách vaccines')
 
 @section('content')
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Tables <small>Some examples to get you started</small></h3>
+                <h3>Danh sách <small>vaccines</small></h3>
             </div>
 
             <div class="title_right">
@@ -27,7 +27,6 @@
             <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Basic Tables <small>basic table subtitle</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -50,27 +49,33 @@
                                 <thead>
                                     <tr style="text-align: center">
                                         <th>#</th>
-                                        <th>Tên loại bệnh</th>
-                                        <th>Mô tả bệnh</th>
+                                        <th>Tên vaccine</th>
+                                        <th>Phòng bệnh</th>
+                                        <th>Số mũi cần tiêm</th>
+                                        <th>Khoảng cách thời gian giữa mỗi mũi</th>
+                                        <th>Ghi chú</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $key => $value)
+                                    @foreach ($data['vaccine'] as $key => $value)
                                         <tr style="text-align: center">
                                             <td scope="row">{{ $key + 1 }}</td>
                                             <td>{{ $value->name }}</td>
-                                            <td>{!! $value->description !!}</td>
+                                            <td>{{ $value->disease->name }}</td>
+                                            <td>{{ $value->doses_required }}</td>
+                                            <td>{{ $value->dose_intervals }}</td>
+                                            <td>{{ $value->description }}</td>
                                             <td>
-                                                <a href="{{ route('diseaseEdit', ['id' => $value->id]) }}"
+                                                <a href="{{ route('vaccineEdit', ['id' => $value->id]) }}"
                                                     class="btn btn-app" style="color: black">
                                                     <i class="fa fa-edit"></i> Sửa
                                                 </a>
                                                 <a class="btn btn-app" data-toggle="modal" data-target="#ModalDelete_{{ $value->id }}"><i
                                                         class="fa fa-trash"></i> Xóa</a>
 
-                                                <div class="modal fade delete-modal-lg" tabindex="-1" role="dialog"
-                                                    aria-hidden="true" id="ModalDelete_{{ $value->id }}">
+                                                <div class="modal fade delete-modal-lg" id="ModalDelete_{{ $value->id }}" tabindex="-1" role="dialog"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                                         <div class="modal-content">
 
@@ -81,13 +86,13 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h4 class="mt-3">Bạn có chắc muốn xóa bệnh: "{{ $value->name }}" này không?
-                                                                </h4>
+                                                                <h4>Bạn có chắc muốn xóa vaccine: "{{ $value->name }}" này
+                                                                    không?</h4>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Đóng</button>
-                                                                <form action="{{ route('diseaseDelete', $value->id) }}"
+                                                                <form action="{{ route('vaccineDelete', $value->id) }}"
                                                                     method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     @method('DELETE')

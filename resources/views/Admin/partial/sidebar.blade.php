@@ -30,21 +30,21 @@
 
                     </ul>
                 </li>
-                <li><a><i class="fa fa-home"></i> Quản lý thông tin bệnh<span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-cube"></i> Quản lý thông tin bệnh<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('disease') }}">Danh sách bệnh</a></li>
                         <li><a href="{{ route('diseaseCreate') }}">Thêm mới loại bệnh</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a><i class="fa fa-home"></i> Quản lý vaccsines<span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-eyedropper"></i> Quản lý Vaccines<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('vaccsine') }}">Danh sách vaccsines</a></li>
-                        <li><a href="{{ route('vaccsineCreate') }}">Thêm mới vaccsines</a></li>
+                        <li><a href="{{ route('vaccine') }}">Danh sách Vaccines</a></li>
+                        <li><a href="{{ route('vaccineCreate') }}">Thêm mới Vaccines</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a><i class="fa fa-home"></i> Quản lý bệnh nhân<span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-users"></i> Quản lý bệnh nhân<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('patient') }}">Danh sách bệnh nhân</a></li>
                         <li><a href="{{ route('patientCreate') }}">Thêm bệnh nhân</a></li>
@@ -52,7 +52,12 @@
                 </li>
                 <li><a><i class="fa fa-edit"></i> Quản lý lịch tiêm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('vaccsineschedule') }}">Danh sách lịch tiêm</a></li>
+                        <li><a href="{{ route('vaccineschedule') }}">Danh sách lịch tiêm</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-calendar"></i> Lịch nhắc nhở <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('vaccineschedule') }}">Danh sách lịch tiêm</a></li>
                     </ul>
                 </li>
             </ul>

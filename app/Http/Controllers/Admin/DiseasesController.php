@@ -84,7 +84,7 @@ class DiseasesController extends Controller
         }
         DB::beginTransaction();
         try {
-            $data               = Diseases::find($id);;
+            $data               = Diseases::find($id);
             $data->name         = $request->name;
             $data->description  = $request->description ?? null;
 

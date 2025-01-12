@@ -45,70 +45,73 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr style="text-align: center">
+                                        <th>#</th>
+                                        <th>Tên bệnh nhân</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Email</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data['patient'] as $key => $value)
+                                        <tr style="text-align: center">
+                                            <td scope="row">{{ $key + 1 }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->dob }}</td>
+                                            <td>{{ $value->email }}</td>
+                                            <td>{{ $value->phone }}</td>
+                                            <td>{{ $value->address }}</td>
+                                            <td>
+                                                <a href="{{ route('patientEdit', ['id' => $value->id]) }}"
+                                                    class="btn btn-app" style="color: black">
+                                                    <i class="fa fa-edit"></i> Sửa
+                                                </a>
+                                                <a class="btn btn-app" data-toggle="modal" data-target="#ModalDelete_{{ $value->id }}"><i
+                                                        class="fa fa-trash"></i> Xóa</a>
 
-                        <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                                <tr style="text-align: center">
-                                    <th>#</th>
-                                    <th>Tên bệnh nhân</th>
-                                    <th>Ngày sinh</th>
-                                    <th>Email</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Chức năng</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data['patient'] as $key => $value)
-                                <tr style="text-align: center">
-                                    <td scope="row">{{ $key + 1 }}</td>
-                                    <td>{{$value->name}}</td>
-                                    <td>{{$value->dob}}</td>
-                                    <td>{{$value->email}}</td>
-                                    <td>{{$value->phone}}</td>
-                                    <td>{{$value->address}}</td>
-                                    <td>
-                                        <a href="{{ route('patientEdit', ['id' => $value->id]) }}" class="btn btn-app">
-                                            <i class="fa fa-edit"></i> Sửa
-                                        </a>
-                                        <a class="btn btn-app" data-toggle="modal" data-target=".delete-modal-lg"><i
-                                                class="fa fa-trash"></i> Xóa</a>
+                                                <div class="modal fade delete-modal-lg" id="ModalDelete_{{ $value->id }}" tabindex="-1" role="dialog"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                        <div class="modal-content">
 
-                                        <div class="modal fade delete-modal-lg" tabindex="-1" role="dialog"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel">Xóa</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h4>Bạn có chắc muốn bệnh nhân: "{{ $value->name }}" này
+                                                                    không?</h4>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                                <form action="{{ route('patientDelete', $value->id) }}"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Xóa</button>
+                                                                </form>
+                                                            </div>
 
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Xóa</h4>
-                                                        <button type="button" class="close" data-dismiss="modal"><span
-                                                                aria-hidden="true">×</span>
-                                                        </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <h4>Bạn có chắc muốn bệnh nhân:{{ $value->name }} này không?</h4>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Đóng</button>
-                                                        <form action="{{ route('patientDelete', $value->id) }}"
-                                                            method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-primary">Xóa</button>
-                                                        </form>
-                                                    </div>
-
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

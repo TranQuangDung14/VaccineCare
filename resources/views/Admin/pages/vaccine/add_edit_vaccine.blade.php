@@ -1,15 +1,15 @@
 @extends('Admin.layouts.master')
 
-@section('title', 'Thêm mới thông Vaccsine')
+@section('title', 'Thêm mới thông Vaccine')
 
 @section('content')
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                @if (isset($data['vaccsine']))
-                    <h3>Cập nhật lại thông tin Vaccsine</h3>
+                @if (isset($data['vaccine']))
+                    <h3>Cập nhật lại thông tin Vaccine</h3>
                 @else
-                    <h3>Thêm mới Vaccsine</h3>
+                    <h3>Thêm mới Vaccine</h3>
                 @endif
             </div>
 
@@ -31,8 +31,8 @@
                 <div class="x_panel">
                     <div class="x_title">
 
-                        @if (isset($data['vaccsine']))
-                            <h2>Cập nhật lại thông tin Vaccsine</h2>
+                        @if (isset($data['vaccine']))
+                            <h2>Cập nhật lại thông tin Vaccine</h2>
                         @else
                             <h2>THÊM MỚI</h2>
                         @endif
@@ -46,23 +46,23 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        @if (isset($data['vaccsine']))
-                            <form action="{{ route('vaccsineUpdate', @$data['vaccsine']->id) }}" method="POST"
+                        @if (isset($data['vaccine']))
+                            <form action="{{ route('vaccineUpdate', @$data['vaccine']->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                             @else
-                                <form class="form-horizontal form-label-left" action="{{ route('vaccsineStore') }}"
+                                <form class="form-horizontal form-label-left" action="{{ route('vaccineStore') }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
                         @endif
                         <div class="form-group row ">
-                            <label class="control-label col-md-2 col-sm-2">Tên vaccsine<span
+                            <label class="control-label col-md-2 col-sm-2">Tên vaccine<span
                                     style="color: red">*</span></label>
                             <div class="col-md-10 col-sm-10">
                                 <input type="text" class="form-control col-md-6" name="name"
-                                    placeholder="Nhập tên vaccsine"
-                                    value="{{ isset($data['vaccsine']) ? $data['vaccsine']->name : old('name') }}">
+                                    placeholder="Nhập tên vaccine"
+                                    value="{{ isset($data['vaccine']) ? $data['vaccine']->name : old('name') }}">
                                 <div class="clearfix"></div>
                                 @if ($errors->has('name'))
                                     <span class="text-danger" role="alert">{{ $errors->first('name') }}</span>
@@ -77,7 +77,7 @@
                                     <option value=""disabled selected>--Chọn phòng bệnh--</option>
                                     @foreach ($data['diseases'] as $value)
                                         <option value="{{ $value->id }}"
-                                            {{ isset($data['vaccsine']) ? ($data['vaccsine']->diseases_id == $value->id ? 'selected' : '') : (old('diseases_id') == $value->id ? 'selected' : '') }}>
+                                            {{ isset($data['vaccine']) ? ($data['vaccine']->diseases_id == $value->id ? 'selected' : '') : (old('diseases_id') == $value->id ? 'selected' : '') }}>
                                             {{ $value->name }}</option>
                                     @endforeach
                                 </select>
@@ -93,7 +93,7 @@
                             <div class="col-md-10 col-sm-10">
                                 <input type="number" class="form-control col-md-6" name="doses_required"
                                     placeholder="Nhập Số mũi cần tiêm"
-                                    value="{{ isset($data['vaccsine']) ? $data['vaccsine']->doses_required : old('doses_required') }}">
+                                    value="{{ isset($data['vaccine']) ? $data['vaccine']->doses_required : old('doses_required') }}">
                                 <div class="clearfix"></div>
                                 @if ($errors->has('doses_required'))
                                     <span class="text-danger" role="alert">{{ $errors->first('doses_required') }}</span>
@@ -107,7 +107,7 @@
                             <div class="col-md-10 col-sm-10">
                                 <input type="number" class="form-control col-md-6" name="dose_intervals"
                                     placeholder="Nhập Chu kì thời gian giữa mỗi mũi tiêm"
-                                    value="{{ isset($data['vaccsine']) ? $data['vaccsine']->dose_intervals : old('dose_intervals') }}">
+                                    value="{{ isset($data['vaccine']) ? $data['vaccine']->dose_intervals : old('dose_intervals') }}">
                                 <div class="clearfix"></div>
                                 @if ($errors->has('dose_intervals'))
                                     <span class="text-danger" role="alert">{{ $errors->first('dose_intervals') }}</span>
@@ -119,7 +119,7 @@
                             <label class="control-label col-md-2 col-sm-2 ">Nhập ghi chú</label>
                             <div class="col-md-10 col-sm-10">
                                 <textarea class="resizable_textarea form-control col-md-6" style="height: 150px;" name="description"
-                                    placeholder="Nhập ghi chú">{{ isset($data['vaccsine']) ? $data['vaccsine']->description : '' }}</textarea>
+                                    placeholder="Nhập ghi chú">{{ isset($data['vaccine']) ? $data['vaccine']->description : '' }}</textarea>
                             </div>
                         </div>
                         <div class="ln_solid"></div>

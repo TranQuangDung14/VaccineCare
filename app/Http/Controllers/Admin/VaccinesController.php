@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yoeunes\Toastr\Facades\Toastr;
 
-class VaccsinesController extends Controller
+class VaccinesController extends Controller
 {
-    //vaccsine
+    //vaccine
     public function index(){
-        $data['vaccsine'] = Vaccines::get();
-        return view('Admin.pages.vaccsine.vaccsine',compact('data'));
+        $data['vaccine'] = Vaccines::get();
+        return view('Admin.pages.vaccine.vaccine',compact('data'));
     }
 
     public function create(){
         $data['diseases'] = Diseases::get();
-        return view('Admin.pages.vaccsine.add_edit_vaccsine',compact('data'));
+        return view('Admin.pages.vaccine.add_edit_vaccine',compact('data'));
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class VaccsinesController extends Controller
             'diseases_id' => 'required',
         );
         $messages = array(
-            'name.required' => '--Tên vaccsine không được để trống!--',
+            'name.required' => '--Tên vaccine không được để trống!--',
             'doses_required.required' => '--Số mũi cần tiêm không được để trống!--',
             'dose_intervals.required' => '--Chu kì thời gian tiêm không được để trống!--',
             'diseases_id.required' => '--Phòng bệnh chưa được chọn!--',
@@ -61,7 +61,7 @@ class VaccsinesController extends Controller
             DB::commit();
 
             Toastr::success('Thêm mới thành công', 'success');
-            return redirect()->route('vaccsine');
+            return redirect()->route('vaccine');
         } catch (\Exception $e) {
             dd($e);
             DB::rollback();
@@ -72,8 +72,8 @@ class VaccsinesController extends Controller
 
     public function edit($id){
         $data['diseases'] = Diseases::get();
-        $data['vaccsine'] = Vaccines::find($id);
-        return view('Admin.pages.vaccsine.add_edit_vaccsine',compact('data'));
+        $data['vaccine'] = Vaccines::find($id);
+        return view('Admin.pages.vaccine.add_edit_vaccine',compact('data'));
     }
 
 
@@ -88,7 +88,7 @@ class VaccsinesController extends Controller
             'diseases_id' => 'required',
         );
         $messages = array(
-            'name.required' => '--Tên vaccsine không được để trống!--',
+            'name.required' => '--Tên vaccine không được để trống!--',
             'doses_required.required' => '--Số mũi cần tiêm không được để trống!--',
             'dose_intervals.required' => '--Chu kì thời gian tiêm không được để trống!--',
             'diseases_id.required' => '--Phòng bệnh chưa được chọn!--',
@@ -114,7 +114,7 @@ class VaccsinesController extends Controller
             DB::commit();
 
             Toastr::success('Cập nhật thành công', 'success');
-            return redirect()->route('vaccsine');
+            return redirect()->route('vaccine');
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Cập nhật thất bại', 'error');

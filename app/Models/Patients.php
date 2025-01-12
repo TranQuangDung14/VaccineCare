@@ -9,4 +9,8 @@ class Patients extends Model
 {
     use HasFactory;
     protected $table = 'patients';
+    public function schedules()
+    {
+        return $this->hasMany(VaccinationSchedules::class,'patient_id');
+    }
 }
