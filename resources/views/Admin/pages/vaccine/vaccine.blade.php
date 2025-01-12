@@ -86,8 +86,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h4>Bạn có chắc muốn xóa vaccine: "{{ $value->name }}" này
-                                                                    không?</h4>
+                                                                <h4>Bạn có chắc muốn xóa vaccine: "{{ $value->name }}" này không?</h4>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
