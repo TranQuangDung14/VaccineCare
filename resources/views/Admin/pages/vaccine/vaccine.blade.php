@@ -64,7 +64,7 @@
                                             <td>{{ $value->name }}</td>
                                             <td>{{ $value->disease->name }}</td>
                                             <td>{{ $value->doses_required }}</td>
-                                            <td>{{ $value->dose_intervals }}</td> 
+                                            <td>{{ $value->dose_intervals }}</td>
                                             <td>{{ $value->description }}</td>
                                             <td>
                                                 <a href="{{ route('vaccineEdit', ['id' => $value->id]) }}"
