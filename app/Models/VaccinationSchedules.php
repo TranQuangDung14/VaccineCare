@@ -12,7 +12,7 @@ class VaccinationSchedules extends Model
 
     public function patients()
     {
-        return $this->belongsTo(Patients::class);
+        return $this->belongsTo(Patients::class,'patient_id');
     }
 
     public function vaccines()

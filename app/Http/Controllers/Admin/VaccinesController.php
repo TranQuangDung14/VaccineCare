@@ -125,6 +125,8 @@ class VaccinesController extends Controller
     // cần nâng cấp thêm khi có data
     public function delete($id)
     {
+        Toastr::warning('Chức năng này tạm thời chưa được dùng', 'warning');
+        return redirect()->back();
         try {
             $data = Vaccines::find($id);
             $data->delete();

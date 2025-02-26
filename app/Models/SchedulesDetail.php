@@ -12,6 +12,11 @@ class SchedulesDetail extends Model
 
     public function vaccinationschedules()
     {
-        return $this->belongsTo(VaccinationSchedules::class);
+        return $this->belongsTo(VaccinationSchedules::class,'vaccination_schedules_id');
+    }
+
+    public function notification()
+    {
+        return $this->hasMany(Notifications::class);
     }
 }

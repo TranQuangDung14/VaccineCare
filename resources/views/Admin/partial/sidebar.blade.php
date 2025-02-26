@@ -48,18 +48,18 @@
                     <ul class="nav child_menu">
                         <li><a href="{{ route('patient') }}">Danh sách bệnh nhân</a></li>
                         <li><a href="{{ route('patientCreate') }}">Thêm bệnh nhân</a></li>
-                    </ul>
+                    </ul>      
                 </li>
                 <li><a><i class="fa fa-edit"></i> Quản lý lịch tiêm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('vaccineschedule') }}">Danh sách lịch tiêm</a></li>
                     </ul>
                 </li>
-                <li><a><i class="fa fa-calendar"></i> Lịch nhắc nhở <span class="fa fa-chevron-down"></span></a>
+                {{-- <li><a><i class="fa fa-calendar"></i> Lịch nhắc nhở <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('vaccineschedule') }}">Danh sách lịch tiêm</a></li>
+                        <li><a href="{{ route('calendarreminder') }}">Lịch nhắc nhở</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

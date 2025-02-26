@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendCalendarMail;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -52,6 +54,9 @@ class PatientsController extends Controller
             $data->address      = $request->address;
 
             $data->save();
+            // $HTTP_RAW_POST_DATA = $data->id;
+            $test ="dungdz";
+            Mail::to($data->email)->send(new SendCalendarMail($test));
             DB::commit();
 
             Toastr::success('Thêm mới thành công', 'success');
@@ -107,6 +112,7 @@ class PatientsController extends Controller
             return redirect()->route('patient');
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             Toastr::error('Cập nhật thất bại', 'error');
             return redirect()->back();
         }
@@ -115,6 +121,8 @@ class PatientsController extends Controller
     // cần nâng cấp thêm
     public function delete($id)
     {
+        Toastr::warning('chức năng này tạm thời chưa được dùng', 'warning');
+        return redirect()->back();
         try {
             $data = Patients::find($id);
             $data->delete();

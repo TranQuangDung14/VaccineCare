@@ -102,8 +102,9 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                             aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#ModalDelete_{{$schedule->id}}"
-                                                href="#"><i class="fa fa-trash"></i> Xóa lịch trình</a>
+                                            <a class="dropdown-item" data-toggle="modal"
+                                                data-target="#ModalDelete_{{ $schedule->id }}" href="#"><i
+                                                    class="fa fa-trash"></i> Xóa lịch trình</a>
                                         </div>
                                     </li>
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -124,6 +125,7 @@
                                                 <th>Thứ tự mũi</th>
                                                 <th>Ngày dự kiến tiêm</th>
                                                 <th>Trạng thái</th>
+                                                {{-- <th>Trạng thái thông báo</th> --}}
                                                 <th>Ghi chú</th>
                                                 <th>Chức năng</th>
                                             </tr>
@@ -137,6 +139,9 @@
                                                     <td>{{ $detail->dose_number }}</td>
                                                     <td>{{ $detail->scheduled_date }}</td>
                                                     {{-- <td>{{ $detail->status }}</td> --}}
+                                                    {{-- <?php 
+                                                        dd($detail->notification[0]);
+                                                    ?> --}}
                                                     <td>
                                                         <span
                                                             class="{{ $detail->status === 0 ? 'badge-warning' : ($detail->status === 1 ? 'badge-success' : 'badge-danger') }} p-2 rounded-pill">
@@ -144,9 +149,18 @@
                                                             {{ $detail->status === 0 ? 'Chưa tiêm' : ($detail->status === 1 ? 'Đã tiêm' : 'Bị lỡ') }}
                                                         </span>
                                                     </td>
-
-
-                                                    {{-- <td>Otto</td> --}}
+                                                    {{-- <td>
+                                                        @if ($detail->dose_number != 1)
+                                                            <ul style="list-style: none;padding: 0; margin: 0;">
+                                                                <li>Trước 14 ngày: {{ isset($detail->notification[0]) ? $detail->notification[0]->status : 'Không cần' }}</li>
+                                                                <li>Trước 7 ngày: {{ isset($detail->notification[1]) ? $detail->notification[1]->status  : 'Không có' }}</li>
+                                                                <li>Trước 1 ngày: {{ isset($detail->notification[2]) ? $detail->notification[2]->status  : 'Không có' }}</li>
+                                                            </ul>
+                                                        @else
+                                                            <span>Không cần thông báo</span>
+                                                        @endif
+                                                        
+                                                    </td> --}}
                                                     <td>{{ $detail->notes }}</td>
                                                     <td>
                                                         {{-- <a href="{{ route('vaccinescheduleCreate', ['id' => $data['patient']->id]) }}"
@@ -246,26 +260,26 @@
                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Xóa lịch trình</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h4>Bạn có chắc muốn xóa Lịch trình tiêm vaccsice:{{ $schedule->vaccines->name }} này không?
-                                    </h4>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                    <form action="{{ route('vaccinescheduleDelete', $schedule->id) }}"
-                                        method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="btn btn-primary">Xóa</button>
-                                    </form>
-                                </div>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Xóa lịch trình</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Bạn có chắc muốn xóa Lịch trình tiêm vaccsice:{{ $schedule->vaccines->name }} này
+                                    không?
+                                </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <form action="{{ route('vaccinescheduleDelete', $schedule->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-primary">Xóa</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

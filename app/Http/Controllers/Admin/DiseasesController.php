@@ -103,6 +103,9 @@ class DiseasesController extends Controller
     // cần nâng cấp thêm
     public function delete($id)
     {
+        Toastr::warning('chức năng này tạm thời chưa được dùng', 'warning');
+        return redirect()->back();
+        // dd('chức năng này chưa hoàn thiện');
         try {
             $data = Diseases::find($id);
             $data->delete();

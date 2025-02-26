@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\auth\AuthController;
+use App\Http\Controllers\Admin\CalendarReminderController;
 use App\Http\Controllers\Admin\DiseasesController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\VaccinationSchedulesController;
 use App\Http\Controllers\Admin\VaccinesController;
+use App\Http\Controllers\SecurityCode\SecurityCodeController;
+use App\Http\Controllers\Zalo\ZaloAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -69,11 +72,24 @@ Route::prefix('admin')->group(function () {
         Route::put('update-status/{id}',       [VaccinationSchedulesController::class, 'updateStatus'])->name('vaccinescheduleUpdateStatus');
         Route::delete('delete-schedule/{id}',    [VaccinationSchedulesController::class, 'delete_schedule'])->name('vaccinescheduleDelete');
     });
+
+    // calendar reminder
+    Route::prefix('calendar-reminder')->middleware('auth')->group(function () {
+
+        Route::get('',                  [CalendarReminderController::class, 'index'])->name('calendarreminder');
+        // Route::get('detail/{id}',       [VaccinationSchedulesController::class, 'showService'])->name('VCDetail');
+        // Route::get('detail/{id}/add',   [VaccinationSchedulesController::class, 'create'])->name('vaccinescheduleCreate');
+        // Route::post('add',              [VaccinationSchedulesController::class, 'store'])->name('vaccinescheduleStore');
+        // // Route::get('edit/{id}',         [VaccinationSchedulesController::class, 'edit'])->name('vaccinescheduleEdit');
+        // Route::put('update-status/{id}',       [VaccinationSchedulesController::class, 'updateStatus'])->name('vaccinescheduleUpdateStatus');
+        // Route::delete('delete-schedule/{id}',    [VaccinationSchedulesController::class, 'delete_schedule'])->name('vaccinescheduleDelete');
+    });
 });
 
-// Route::get('/', function () {
-//     return view('index');
-// });  
+Route::get('code_challenge_and_verifier ', [SecurityCodeController::class, 'index'])->name('code_security');
+
+Route::get('/zalo/callback', [ZaloAuthController::class, 'handleCallback']);
+
 // Route::get('/login', function () {
 //     return view('Admin.pages.auth.login');
 // });  
